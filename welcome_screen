@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:sacco_app/screens/signin_screen.dart';
+import 'package:sacco_app/screens/signup_screen.dart';
+import 'package:sacco_app/theme/theme.dart';
+import 'package:sacco_app/widgets/custom_scaffold.dart';
+import 'package:sacco_app/widgets/welcome_button.dart';
+
+class welcomeScreen extends StatelessWidget {
+  const welcomeScreen({super.key, this.buttonText});
+  final String? buttonText;
+  @override
+  Widget build(BuildContext context) {
+    return CustomScaffold(
+      body: null,
+      child: Column(
+
+        children: [
+           Container(
+            width: 200,
+             height: 200,
+             child: Image(
+
+                image: AssetImage('assets/images/log.png'),
+
+             ),
+           ),
+
+          Flexible(
+            flex: 1,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 0,
+                  horizontal: 40.0,
+                ),
+            child: Center(child: RichText(textAlign: TextAlign.center,
+              text: const TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Welcome Back!\n',
+                    style: TextStyle(
+                      fontSize: 45.0,
+                      fontWeight: FontWeight.w600,
+                    )
+                  ),
+                  TextSpan(
+                    text: '\n Enter personal details to your Sacco account',
+                    style: TextStyle(
+                      fontSize: 20,
+                    )
+
+                  )
+                ]
+              ),)),
+          )),
+          const Flexible(
+           flex: 1,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Row(
+                  children: [
+                    Expanded(
+                      child:
+                    WelcomeButton(
+                      buttonText: 'Sign in',
+                      onTap: SignInScreen(),
+                      color: Colors.transparent,
+                      textColor: Colors.black,
+                    ),
+                    ),
+                    Expanded(child:
+                    WelcomeButton(
+                      color: Colors.black,
+                      textColor: Colors.white,
+                      onTap: SignupScreen(),
+                      buttonText: 'Sign up',
+
+                    ),),
+
+                  ],),
+            ),),
+        ],
+      ),
+    );
+
+  }
+}
